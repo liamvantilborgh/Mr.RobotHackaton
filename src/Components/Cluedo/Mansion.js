@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useSettings } from "../context/useSettings";
 import { CluesContext } from "../Main";
 
@@ -11,11 +11,17 @@ import { CluesContext } from "../Main";
 export const Mansion = ({ onSelectRoom }) => {
   const clues = useContext(CluesContext);
   const { settings, setSettings } = useSettings();
-console.log(clues);
 
   return (
     <div>
-      {clues.map((item, index) => (item.type == "room") ? (<li key={index} onClick={onSelectRoom}> <a>{JSON.stringify(item.title)}</a></li>): null)}
+      {clues.map((item, index) =>
+        item.type == "room" ? (
+          <li key={index} onClick={onSelectRoom}>
+            {" "}
+            <a>{JSON.stringify(item.title)}</a>
+          </li>
+        ) : null
+      )}
     </div>
   );
 };

@@ -13,8 +13,7 @@ export const CluesContext = React.createContext();
 export const Main = () => {
   const { settings, setSettings } = useSettings();
   const [clues, setClues] = useState();
-  const axios = require('axios');
-  
+  const axios = require("axios");
 
   useEffect(() => {
     setSettings({
@@ -40,13 +39,14 @@ export const Main = () => {
   useEffect(() => {
     if (settings) {
       // De settings zijn geladen, haal hier de aanwijzingen op en bewaar ze in de state (setClues)
-      const token = window.btoa(settings.auth.username + ":" + settings.auth.password);
-      console.log(token);
-      console.log(settings);
-        axios.get(
-          settings.baseURL + settings.url.clues, {headers: {'Authorization': `Basic ${token}`}}
-        )
-        .then((res) => setClues(res.data))
+      const token = window.btoa(
+        settings.auth.username + ":" + settings.auth.password
+      );
+      axios
+        .get(settings.baseURL + settings.url.clues, {
+          headers: { Authorization: `Basic ${token}` },
+        })
+        .then((res) => setClues(res.data));
     }
   }, [settings]);
 
