@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useContext} from "react";
 import {useSettings} from "../context/useSettings";
 import Button from "../Button";
+import { CluesContext } from "../Main";
+import axios from "axios";
 
 /*
    CLUEDO START
@@ -11,9 +13,15 @@ import Button from "../Button";
 
 const CluedoStart = ({ onStart }) => {
   const { settings } = useSettings();
-
+  const axios = require('axios');
+ 
   const startGame = () => {
-    //
+    const token = window.btoa(settings.auth.username + ":" + settings.auth.password);
+      console.log(settings);
+        axios.get(
+          settings.baseURL + settings.url.new, {headers: {'Authorization': `Basic ${token}`}}
+        )
+        .then((res) => onStart(res.data))
   };
 
   return (

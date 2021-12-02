@@ -13,10 +13,9 @@ console.log(clues)
   return (
     <div className="full file">
       <h2>Aanwijzingen</h2>
-      <div>Lijst hier de kamers, wapens en verdachten op.</div>
       <div>
-      {clues.map((item, index) => (<li key={index}>{JSON.stringify(item)}</li>)
-          )}
+      {clues.map((item, index) => (item.type == "suspect") ? (<li key={index}>{"Type: " + JSON.stringify(item.type) + ", Titel: " + JSON.stringify(item.title) + ", Kleur: " + JSON.stringify(item.color)}</li>) 
+      : (<li key={index}>{"Type: " + JSON.stringify(item.type) + ", Titel: " + JSON.stringify(item.title)}</li>))}
       </div>
     </div>
   );
